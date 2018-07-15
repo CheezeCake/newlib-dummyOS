@@ -11,7 +11,7 @@ pid_t wait(int* status)
 	return pid;
 }
 
-pid_t sys_waitpid(pid_t pid, int* status, int options)
+pid_t waitpid(pid_t pid, int* status, int options)
 {
 	pid_t ret;
 
