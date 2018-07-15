@@ -1,5 +1,5 @@
 #ifndef _SYSCALL_H
-#define _SYS_SYSCALL_H
+#define _SYSCALL_H
 
 #include <dummyos/syscall.h> /* SYS_* definitions */
 #include <errno.h>
