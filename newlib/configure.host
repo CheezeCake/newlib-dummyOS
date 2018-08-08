@@ -448,6 +448,11 @@ case "${host}" in
 	posix_dir=posix
 	unix_dir=unix
 	;;
+  *-*-dummyos*)
+	sys_dir=dummyos
+	posix_dir=posix
+	# unix_dir=unix
+    ;;
   *-*-tirtos*)
 	sys_dir=tirtos
 	have_crt0="no"
@@ -626,11 +631,6 @@ case "${host}" in
   z8k-*-coff)
 	sys_dir=z8ksim
 	;;
-  i[3-7]86-*-dummyos)
-	sys_dir=dummyos
-	posix_dir=posix
-	# unix_dir=unix
-    ;;
 esac
 
 # Host specific flag settings -- usually for features that are not
@@ -669,6 +669,10 @@ case "${host}" in
 newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVIDED -DSIGNAL_PROVIDED -DGETREENT_PROVIDED -DREENTRANT_SYSCALLS_PROVIDED -DHAVE_NANOSLEEP -DHAVE_BLKSIZE -DHAVE_FCNTL -DHAVE_ASSERT_FUNC"
         # turn off unsupported items in posix directory 
 	newlib_cflags="${newlib_cflags} -D_NO_GETLOGIN -D_NO_GETPWENT -D_NO_GETUT -D_NO_GETPASS -D_NO_SIGSET -D_NO_WORDEXP -D_NO_POPEN -D_NO_POSIX_SPAWN"
+	;;
+  *-*-dummyos*)
+	newlib_cflags="${newlib_cflags} -DMISSING_SYSCALL_NAMES -DSIGNAL_PROVIDED"
+	syscall_dir=
 	;;
 # VxWorks supplies its own version of malloc, and the newlib one
 # doesn't work because VxWorks does not have sbrk.

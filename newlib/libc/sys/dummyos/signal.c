@@ -1,5 +1,5 @@
-#include <sys/types.h>
 #include <unistd.h>
+#include <signal.h>
 #include "syscall.h"
 
 int kill(pid_t pid, int sig)
@@ -12,14 +12,23 @@ int kill(pid_t pid, int sig)
 	return ret;
 }
 
-int raise(int sig)
+sighandler_t signal(int sig, sighandler_t handler)
 {
-	pid_t pid;
+	sighandler_t ret;
+
+	ret = syscall2(sighandler_t, SYS_signal, sig, handler);
+	if (ret == SIG_ERR)
+		errno = EINVAL;
+
+	return ret;
+}
+
+int sigaction(int sig, const struct sigaction* act, struct sigaction* oact)
+{
 	int ret;
 
-	pid = getpid();
-	if (pid < 0)
-		return pid;
+	ret = syscall3(int, SYS_sigaction, sig, act, oact);
+	__set_errno(ret);
 
-	return kill(pid, sig);
+	return ret;
 }
