@@ -32,3 +32,13 @@ int sigaction(int sig, const struct sigaction* act, struct sigaction* oact)
 
 	return ret;
 }
+
+int sigprocmask(int how, const sigset_t* set, sigset_t* oset)
+{
+	int ret;
+
+	ret = syscall3(int, SYS_sigprocmask, how, set, oset);
+	__set_errno(ret);
+
+	return ret;
+}
