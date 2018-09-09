@@ -12,6 +12,7 @@ SOURCES = exec.c \
 		  fs.c \
 		  io.c \
 		  ioctl.c \
+		  pipe.c \
 		  sbrk.c \
 		  signal.c \
 		  stat.c \
