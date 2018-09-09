@@ -72,10 +72,11 @@ lib_a_AR = $(AR) $(ARFLAGS)
 am__DEPENDENCIES_1 =
 am__objects_1 = lib_a-exec.$(OBJEXT) lib_a-exit.$(OBJEXT) \
 	lib_a-fork.$(OBJEXT) lib_a-fs.$(OBJEXT) lib_a-io.$(OBJEXT) \
-	lib_a-ioctl.$(OBJEXT) lib_a-sbrk.$(OBJEXT) \
-	lib_a-signal.$(OBJEXT) lib_a-stat.$(OBJEXT) \
-	lib_a-sys.$(OBJEXT) lib_a-termios.$(OBJEXT) \
-	lib_a-tty.$(OBJEXT) lib_a-wait.$(OBJEXT)
+	lib_a-ioctl.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
+	lib_a-sbrk.$(OBJEXT) lib_a-signal.$(OBJEXT) \
+	lib_a-stat.$(OBJEXT) lib_a-sys.$(OBJEXT) \
+	lib_a-termios.$(OBJEXT) lib_a-tty.$(OBJEXT) \
+	lib_a-wait.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -220,6 +221,7 @@ SOURCES = exec.c \
 		  fs.c \
 		  io.c \
 		  ioctl.c \
+		  pipe.c \
 		  sbrk.c \
 		  signal.c \
 		  stat.c \
@@ -327,6 +329,12 @@ lib_a-ioctl.o: ioctl.c
 
 lib_a-ioctl.obj: ioctl.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ioctl.obj `if test -f 'ioctl.c'; then $(CYGPATH_W) 'ioctl.c'; else $(CYGPATH_W) '$(srcdir)/ioctl.c'; fi`
+
+lib_a-pipe.o: pipe.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pipe.o `test -f 'pipe.c' || echo '$(srcdir)/'`pipe.c
+
+lib_a-pipe.obj: pipe.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pipe.obj `if test -f 'pipe.c'; then $(CYGPATH_W) 'pipe.c'; else $(CYGPATH_W) '$(srcdir)/pipe.c'; fi`
 
 lib_a-sbrk.o: sbrk.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sbrk.o `test -f 'sbrk.c' || echo '$(srcdir)/'`sbrk.c
