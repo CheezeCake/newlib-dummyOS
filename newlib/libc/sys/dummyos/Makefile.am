@@ -6,7 +6,8 @@ SUBDIRS = machine
 
 SUBLIBS = $(DUMMYOS_MACH_LIB)
 
-SOURCES = exec.c \
+SOURCES = dup.c \
+		  exec.c \
 		  exit.c \
 		  fork.c \
 		  fs.c \

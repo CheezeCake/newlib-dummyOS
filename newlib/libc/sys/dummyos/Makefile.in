@@ -70,9 +70,9 @@ LIBRARIES = $(noinst_LIBRARIES)
 ARFLAGS = cru
 lib_a_AR = $(AR) $(ARFLAGS)
 am__DEPENDENCIES_1 =
-am__objects_1 = lib_a-exec.$(OBJEXT) lib_a-exit.$(OBJEXT) \
-	lib_a-fork.$(OBJEXT) lib_a-fs.$(OBJEXT) lib_a-io.$(OBJEXT) \
-	lib_a-ioctl.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
+am__objects_1 = lib_a-dup.$(OBJEXT) lib_a-exec.$(OBJEXT) \
+	lib_a-exit.$(OBJEXT) lib_a-fork.$(OBJEXT) lib_a-fs.$(OBJEXT) \
+	lib_a-io.$(OBJEXT) lib_a-ioctl.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
 	lib_a-sbrk.$(OBJEXT) lib_a-signal.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-sys.$(OBJEXT) \
 	lib_a-termios.$(OBJEXT) lib_a-tty.$(OBJEXT) \
@@ -215,7 +215,8 @@ AUTOMAKE_OPTIONS = cygnus
 INCLUDES = $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS) $(INCLTDL)
 SUBDIRS = machine
 SUBLIBS = $(DUMMYOS_MACH_LIB)
-SOURCES = exec.c \
+SOURCES = dup.c \
+		  exec.c \
 		  exit.c \
 		  fork.c \
 		  fs.c \
@@ -293,6 +294,12 @@ distclean-compile:
 
 .c.obj:
 	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+lib_a-dup.o: dup.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-dup.o `test -f 'dup.c' || echo '$(srcdir)/'`dup.c
+
+lib_a-dup.obj: dup.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-dup.obj `if test -f 'dup.c'; then $(CYGPATH_W) 'dup.c'; else $(CYGPATH_W) '$(srcdir)/dup.c'; fi`
 
 lib_a-exec.o: exec.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-exec.o `test -f 'exec.c' || echo '$(srcdir)/'`exec.c
