@@ -8,25 +8,14 @@ extern "C" {
 
 #include <dummyos/stat.h>
 
-#define	_IFMT	0170000	/* type of file */
-#define	_IFDIR	0040000	/* directory */
-#define	_IFCHR	0020000	/* character special */
-#define	_IFBLK	0060000	/* block special */
-#define	_IFREG	0100000	/* regular */
-#define	_IFLNK	0120000	/* symbolic link */
-#define	_IFSOCK	0140000	/* socket */
-#define	_IFIFO	0010000	/* fifo */
-
-#define	S_BLKSIZE  1024 /* size of a block */
-
-#define	S_IFMT		_IFMT
-#define	S_IFDIR		_IFDIR
-#define	S_IFCHR		_IFCHR
-#define	S_IFBLK		_IFBLK
-#define	S_IFREG		_IFREG
-#define	S_IFLNK		_IFLNK
-#define	S_IFSOCK	_IFSOCK
-#define	S_IFIFO		_IFIFO
+#define	_IFMT		S_IFMT
+#define	_IFDIR		S_IFDIR
+#define	_IFCHR		S_IFCHR
+#define	_IFBLK		S_IFBLK
+#define	_IFREG		S_IFREG
+#define	_IFLNK		S_IFLNK
+#define	_IFSOCK		S_IFSOCK
+#define	_IFIFO		S_IFIFO
 
 #define ACCESSPERMS (S_IRWXU | S_IRWXG | S_IRWXO) /* 0777 */
 #define ALLPERMS (S_ISUID | S_ISGID | S_ISVTX | S_IRWXU | S_IRWXG | S_IRWXO) /* 07777 */
