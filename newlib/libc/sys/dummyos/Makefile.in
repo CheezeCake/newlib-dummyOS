@@ -72,7 +72,8 @@ lib_a_AR = $(AR) $(ARFLAGS)
 am__DEPENDENCIES_1 =
 am__objects_1 = lib_a-dup.$(OBJEXT) lib_a-exec.$(OBJEXT) \
 	lib_a-exit.$(OBJEXT) lib_a-fork.$(OBJEXT) lib_a-fs.$(OBJEXT) \
-	lib_a-io.$(OBJEXT) lib_a-ioctl.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
+	lib_a-io.$(OBJEXT) lib_a-ioctl.$(OBJEXT) \
+	lib_a-nanosleep.$(OBJEXT) lib_a-pipe.$(OBJEXT) \
 	lib_a-sbrk.$(OBJEXT) lib_a-signal.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-sys.$(OBJEXT) \
 	lib_a-termios.$(OBJEXT) lib_a-tty.$(OBJEXT) \
@@ -222,6 +223,7 @@ SOURCES = dup.c \
 		  fs.c \
 		  io.c \
 		  ioctl.c \
+		  nanosleep.c \
 		  pipe.c \
 		  sbrk.c \
 		  signal.c \
@@ -336,6 +338,12 @@ lib_a-ioctl.o: ioctl.c
 
 lib_a-ioctl.obj: ioctl.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ioctl.obj `if test -f 'ioctl.c'; then $(CYGPATH_W) 'ioctl.c'; else $(CYGPATH_W) '$(srcdir)/ioctl.c'; fi`
+
+lib_a-nanosleep.o: nanosleep.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-nanosleep.o `test -f 'nanosleep.c' || echo '$(srcdir)/'`nanosleep.c
+
+lib_a-nanosleep.obj: nanosleep.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-nanosleep.obj `if test -f 'nanosleep.c'; then $(CYGPATH_W) 'nanosleep.c'; else $(CYGPATH_W) '$(srcdir)/nanosleep.c'; fi`
 
 lib_a-pipe.o: pipe.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pipe.o `test -f 'pipe.c' || echo '$(srcdir)/'`pipe.c
