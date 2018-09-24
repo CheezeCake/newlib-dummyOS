@@ -13,6 +13,7 @@ SOURCES = dup.c \
 		  fs.c \
 		  io.c \
 		  ioctl.c \
+		  nanosleep.c \
 		  pipe.c \
 		  sbrk.c \
 		  signal.c \
