@@ -35,7 +35,6 @@ THIS SOFTWARE.
 #include <locale.h>
 #include "mprec.h"
 #include "gdtoa.h"
-#include "gd_qnan.h"
 
 #if !defined(PREFER_SIZE_OVER_SPEED) && !defined(__OPTIMIZE_SIZE__) && !defined(_SMALL_HEXDIG)
 const unsigned char __hexdig[256]=
@@ -130,7 +129,7 @@ increment (struct _reent *ptr,
 #endif
 	{
 		if (b->_wds >= b->_maxwds) {
-			b1 = Balloc(ptr, b->_k+1);
+			b1 = eBalloc(ptr, b->_k+1);
 			Bcopy(b1, b);
 			Bfree(ptr, b);
 			b = b1;
@@ -150,8 +149,8 @@ gethex (struct _reent *ptr, const char **sp, const FPI *fpi,
 	int esign, havedig, irv, k, n, nbits, up, zret;
 	__ULong L, lostbits, *x;
 	Long e, e1;
-	unsigned char *decimalpoint = (unsigned char *)
-				      __localeconv_l (loc)->decimal_point;
+	const unsigned char *decimalpoint = (unsigned char *)
+				      __get_numeric_locale(loc)->decimal_point;
 	size_t decp_len = strlen ((const char *) decimalpoint);
 	unsigned char decp_end = decimalpoint[decp_len - 1];
 
@@ -220,7 +219,7 @@ gethex (struct _reent *ptr, const char **sp, const FPI *fpi,
 	n = s1 - s0 - 1;
 	for(k = 0; n > 7; n >>= 1)
 		k++;
-	b = Balloc(ptr, k);
+	b = eBalloc(ptr, k);
 	x = b->_x;
 	n = 0;
 	L = 0;
